@@ -17,11 +17,12 @@ authors:
     affiliation: ["Princeton University", "Springer Heidelberg"]
     corresponding: false
 keywords: 
-  - "Mínimo"
-  - "tres"
-  - "palabras clave"
+  - "R"
+  - "Salud"
+  - "Sector Público"
+  - "Historia Clínica Electrónica"
 abstract: |
-  Abstract goes here!
+  El recupero de gastos en la salud pública de la Ciudad de Buenos Aires busca recuperar los costos de la atención de pacientes con cobertura de salud que reciben servicios en la Red Integral de Cuidados Progresivos del subsector público. Desde la Gerencia Operativa de Gestión de Información y Estadísticas en Salud (GOGIES) se ha automatizado la generación de la documentación necesaria para este proceso mediante el uso de R y bibliotecas abiertas, generando un impacto inmediato en el ahorro de horas de trabajo de los actores involucrados y redundando en un recupero de gastos efectivo en la Ciudad. 
 bibliography: latinr_bibliography.bib
 biblio-style: apalike-es   
 output: 
@@ -32,35 +33,43 @@ params:
   check_is_error: FALSE
 ---
 
-
 ```{r submission-checks, echo=FALSE, warning=TRUE}
 # Runs some basic checks in metadata. To disable, set check_is_error to FALSE
 latinr::latinr_checks(rmarkdown::metadata, params$check_is_error)
 ```
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+El proceso de recuperación de gastos en el sistema de salud pública de la Ciudad de Buenos Aires está diseñado para obtener un reintegro por los recursos utilizados en la atención de pacientes con cobertura de salud que reciben servicios en la Red Integral de Cuidados Progresivos del subsector público de la Ciudad Autónoma de Buenos Aires. Este procedimiento es gestionado por la sociedad del Estado Facturación y Cobranza de los Efectores Públicos (FACOEP), creada en 2016 por la Ley 5.622, en el ámbito del Ministerio de Salud.
+
+La Gerencia Operativa de Gestión de Información Estadística de Salud (GOGIES) ha desarrollado un proyecto para automatizar la generación de la documentación necesaria para el desarrollo de este proceso administrativo. Este proyecto fue llevado a cabo por un equipo de ciencia de datos interdisciplinario utilizando el lenguaje R.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\linewidth]{imagenes/2.png}
+    \caption{Circuito del recupero de gastos}
+    \label{fig:enter-label}
+\end{figure}
 
 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+El procedimiento administrativo se inicia cuando FACOEP recibe los Comprobantes de Recupero de Gastos (CRG) enviados por los efectores públicos. Para la conformación de dicha documentación los efectores deben adjuntar, entre otros elementos, la, documentación respaldatoria del asiento electrónico de la prestación brindada o Detalle de las Prestaciones Hospitalarias (DPH). Para cumplimentar este aspecto clave, GOGIES desarrolló un proyecto para generar automáticamente el DPH con el detalle de las atenciones hospitalarias por cada documento generado en sistema de las atenciones ambulatorias y de guardias (Anexo II) para instancias asistenciales efectuadas con pacientes con cobertura). 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\linewidth]{imagenes/1.png}
+    \caption{Consolidación del Detalle de Prestaciones Hospitalarias (DPH) en R}
+    \label{fig:enter-label}
+\end{figure}
 
-## Including Plots
 
-You can also embed plots, for example:
+El primer paso del proceso consiste en recopilar todos los Anexos II generados en sistema a partir de los registros de las atenciones generadas a pacientes con cobertura de salud ante la confirmación de un turno. Este registro incluye, además de la descripción del tipo de atención recibida conforme al Nomenclador de Obras Sociales del GCBA, la información de la Cobertura del paciente al momento de la atención.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+A partir de esta información se busca el registro electrónico correspondiente en el módulo HIS que valide el proceso asistencial, incluyendo la evolución y el motivo de consulta. Posteriormente, a través de Rmarkdown, se generan los documentos DPH por efector, ente de cobertura de salud y semana con la información necesaria: Diagnostico del paciente, profesional de la atención, detalle de las prestaciones brindadas. 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.[@Nuncio2011]
+Por último, se envían a cada efector para que los facturistas continúen con el proceso administrativo conforme a la normativa vigente. 
+
+
