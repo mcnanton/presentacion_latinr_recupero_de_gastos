@@ -22,7 +22,7 @@ keywords:
   - "Sector Público"
   - "Historia Clínica Electrónica"
 abstract: |
-  El recupero de gastos en la salud pública de la Ciudad de Buenos Aires busca recuperar los costos de la atención de pacientes con cobertura de salud que reciben servicios en la Red Integral de Cuidados Progresivos del subsector público. Desde la Gerencia Operativa de Gestión de Información y Estadísticas en Salud (GOGIES) se ha automatizado la generación de la documentación necesaria para este proceso mediante el uso de R y bibliotecas abiertas, generando un impacto inmediato en el ahorro de horas de trabajo de los actores involucrados y redundando en un recupero de gastos efectivo en la Ciudad. 
+  El recupero de gastos en la salud pública de la Ciudad de Buenos Aires busca recuperar los costos de la atención de pacientes con cobertura de salud que reciben servicios en la Red Integral de Cuidados Progresivos del subsector público. Desde la Gerencia Operativa de Gestión de Información y Estadísticas en Salud (GOGIES) se ha automatizado la generación de la documentación necesaria para este proceso mediante el uso de R y bibliotecas abiertas, generando un impacto inmediato en el ahorro de horas de trabajo de los actores involucrados y redundando en un recupero de gastos efectivo en la Ciudad.  
 bibliography: latinr_bibliography.bib
 biblio-style: apalike-es   
 output: 
@@ -42,34 +42,36 @@ latinr::latinr_checks(rmarkdown::metadata, params$check_is_error)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-El proceso de recuperación de gastos en el sistema de salud pública de la Ciudad de Buenos Aires está diseñado para obtener un reintegro por los recursos utilizados en la atención de pacientes con cobertura de salud que reciben servicios en la Red Integral de Cuidados Progresivos del subsector público de la Ciudad Autónoma de Buenos Aires. Este procedimiento es gestionado por la sociedad del Estado Facturación y Cobranza de los Efectores Públicos (FACOEP), creada en 2016 por la Ley 5.622, en el ámbito del Ministerio de Salud.
+El proceso de recuperación de gastos en el sistema de salud pública de la Ciudad de Buenos Aires está diseñado para obtener un reintegro monetario por los recursos utilizados en la atención de pacientes con cobertura de salud que reciben servicios en la Red Integral de Cuidados Progresivos del subsector público de la Ciudad Autónoma de Buenos Aires. Este procedimiento es gestionado por la sociedad del Estado Facturación y Cobranza de los Efectores Públicos (FACOEP).
 
-La Gerencia Operativa de Gestión de Información Estadística de Salud (GOGIES) ha desarrollado un proyecto para automatizar la generación de la documentación necesaria para el desarrollo de este proceso administrativo. Este proyecto fue llevado a cabo por un equipo de ciencia de datos interdisciplinario utilizando el lenguaje R.
+La Gerencia Operativa de Gestión de Información Estadística de Salud (GOGIES) ha desarrollado un proyecto para automatizar la generación de la documentación necesaria para el desarrollo de este proceso administrativo. Este proyecto fue llevado a cabo por un equipo de ciencia de datos interdisciplinario utilizando el lenguaje R.[^1]
 
+[^1]: Ley 5622/2016 y modificatorias. Disponible en: <https://boletinoficial.buenosaires.gob.ar/normativaba/norma/332530>
+
+```{=tex}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{imagenes/2.png}
-    \caption{Circuito del recupero de gastos}
+    \caption{Circuito de generación de comprobantes y documentación para el recupero de gastos de la GCBA}
     \label{fig:enter-label}
 \end{figure}
+```
+El procedimiento administrativo se inicia cuando FACOEP recibe los Comprobantes de Recupero de Gastos (CRG) enviados por los efectores públicos. Para la conformación de dicha documentación los efectores deben adjuntar, entre otros elementos, la documentación respaldatoria del asiento electrónico de la prestación brindada o Detalle de las Prestaciones Hospitalarias (DPH). Para cumplimentar este aspecto clave, GOGIES desarrolló un proyecto para generar automáticamente el DPH con el detalle de las atenciones hospitalarias por cada documento generado en sistema que certifican las atenciones ambulatorias y de guardias (Anexo II) para instancias asistenciales efectuadas con pacientes con cobertura[^2].
 
+[^2]: Resolución 1249/17 del Ministerio de Salud del GCBA y sus modificatorias, que regulan el proceso administrativo para el recupero del gasto. Disponible en: <https://boletinoficial.buenosaires.gob.ar/normativaba/norma/365773>
 
-
-El procedimiento administrativo se inicia cuando FACOEP recibe los Comprobantes de Recupero de Gastos (CRG) enviados por los efectores públicos. Para la conformación de dicha documentación los efectores deben adjuntar, entre otros elementos, la, documentación respaldatoria del asiento electrónico de la prestación brindada o Detalle de las Prestaciones Hospitalarias (DPH). Para cumplimentar este aspecto clave, GOGIES desarrolló un proyecto para generar automáticamente el DPH con el detalle de las atenciones hospitalarias por cada documento generado en sistema de las atenciones ambulatorias y de guardias (Anexo II) para instancias asistenciales efectuadas con pacientes con cobertura). 
-
-
+```{=tex}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{imagenes/1.png}
     \caption{Consolidación del Detalle de Prestaciones Hospitalarias (DPH) en R}
     \label{fig:enter-label}
 \end{figure}
+```
+El primer paso del proceso consiste en recopilar todos los Anexos II generados en sistema a partir de los registros de las atenciones generadas a pacientes con cobertura de salud ante la confirmación de un turno. Este registro incluye, además de la descripción del tipo de atención recibida conforme al Nomenclador de Obras Sociales del GCBA, la información de la seguridad social del paciente al momento de la atención.
 
+A partir de esta información se busca el registro electrónico correspondiente en la Historia Clínica Electrónica que valide el proceso asistencial, incluyendo la evolución y el motivo de consulta. Posteriormente, a través de Rmarkdown, se generan los documentos DPH por efector, ente de cobertura de salud y semana con la información necesaria: Diagnostico del paciente, profesional de la atención, detalle de las prestaciones brindadas. Por último, se envían a cada efector para que los facturistas continúen con el proceso administrativo conforme a la normativa vigente.
 
-El primer paso del proceso consiste en recopilar todos los Anexos II generados en sistema a partir de los registros de las atenciones generadas a pacientes con cobertura de salud ante la confirmación de un turno. Este registro incluye, además de la descripción del tipo de atención recibida conforme al Nomenclador de Obras Sociales del GCBA, la información de la Cobertura del paciente al momento de la atención.
+Esta herramienta ha permitido reducir significativamente el tiempo dedicado a procesar y detectar de manera manual grandes cantidades de prestaciones brindadas.
 
-A partir de esta información se busca el registro electrónico correspondiente en el módulo HIS que valide el proceso asistencial, incluyendo la evolución y el motivo de consulta. Posteriormente, a través de Rmarkdown, se generan los documentos DPH por efector, ente de cobertura de salud y semana con la información necesaria: Diagnostico del paciente, profesional de la atención, detalle de las prestaciones brindadas. 
-
-Por último, se envían a cada efector para que los facturistas continúen con el proceso administrativo conforme a la normativa vigente. 
-
-
+El impacto de este proyecto ha sido notable al agilizar significativamente la generación de la documentación necesaria para garantizar el procedimiento administrativo, y su consecuente efecto directo en la maximización de los reintegros beneficiando al sistema de salud pública en su conjunto. La elección de herramientas libres y abiertas como R, junto con bibliotecas como dplyr, tidyverse, y Rmarkdown, ha sido fundamental para alcanzar estos resultados. Este avance no sólo marca un hito en la optimización de este procedimiento administrativo en particular sino que se configura como un precedente que puede ser replicado para transformar y optimizar otros procesos dentro de la gestión pública.
