@@ -1,0 +1,121 @@
+---
+title: "Experiencias en el uso de R para la automatización de procedimientos administrativos: el Recupero de gastos en el sistema público de salud de la Ciudad de Buenos Aire"
+# subtitle: ""
+author: "María Cristina Nanton, Manuel Rodríguez Tablado y Ariana Bardauil"
+institute: "Latin R 2024"
+date: "18-22 de noviembre de 2024"
+output:
+  xaringan::moon_reader:
+    css: ["latinR.css"]
+    self_contained: true
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      # beforeInit: "macros.js"
+---
+<!-- https://arm.rbind.io/slides/xaringan.html#1 -->
+<!-- https://spcanelon.github.io/xaringan-rladies-xalapa/diapositivas/introduccion-xaringan.html#54 -->
+
+
+# Quienes somos
+
+<img src="imagenes/agise.png" width="90%"/>
+<!-- <img src="html5.gif" alt="organigrama de GOGIES" style="width:128px;height:128px;"> -->
+
+---
+
+class: chapter-slide
+
+# Contexto y motivación
+
+---
+
+# Recupero de gastos
+
+<img src="imagenes/1.png" width="90%"/>
+<!-- ![image info](./imagenes/objetivos.png) -->
+
+
+---
+# Nuestro equipo
+
+<img src="imagenes/2.png" width="90%"/>
+<!-- ![image info](./imagenes/objetivos.png) -->
+
+
+---
+
+# Objetivos del Proyecto
+
+<img src="imagenes/3.png" width="90%"/>
+<!-- ![image info](./imagenes/objetivos.png) -->
+
+
+---
+
+# El circuito administrativo
+
+<img src="imagenes/4.png" class="center" width="90%"/>
+<!-- ![image info](./imagenes/proyectos_impactados.png) -->
+
+
+---
+
+class: chapter-slide
+
+# Resolución técnica
+
+---
+
+# Herramientas
+
+<img src="imagenes/5.png" class="center" width="90%"/>
+<!-- ![image info](./imagenes/ciclo_del_dato.png) -->
+---
+
+# Circuito
+
+<img src="imagenes/6.png" class="center" width="90%"/>
+
+<!-- ![image info](./imagenes/seguimiento_y_registro_embarazo.png) -->
+
+---
+
+class: chapter-slide
+
+# Resultados
+
+---
+
+## ¿Cómo impactó en la facturación?
+
+<img src="imagenes/7.png" class="center" width="80%"/>
+
+<!-- ![image info](./herramientas.png) -->
+
+---
+
+## ¿Cómo impactó en la facturación?
+
+<img src="imagenes/8.png" class="center" width="80%"/>
+
+<!-- ![image info](./herramientas.png) -->
+
+---
+
+## Muchas gracias!
+
+<br>
+<br>
+<br>
+
+
+**María Cristina Nanton**<br>
+m.nanton@buenosaires.gob.ar <br>
+**Manuel Rodríguez Tablado**<br>
+mrodrigueztablado@buenosaires.gob.ar <br>
+**Ariana Bardauil**<br>
+abardauil@buenosaires.gob.ar <br>
+
+
+
